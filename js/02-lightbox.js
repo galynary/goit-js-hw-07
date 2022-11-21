@@ -3,6 +3,8 @@ import { galleryItems } from "./gallery-items.js";
 console.log(galleryItems);
 
 const divRef = document.querySelector(".gallery");
+const addGallaryMarkup = createGallaryMarkup(galleryItems);
+divRef.innerHTML = addGallaryMarkup;
 function createGallaryMarkup(items) {
   return items
     .map(
@@ -20,14 +22,8 @@ function createGallaryMarkup(items) {
     )
     .join("");
 }
-function onImageClick(evt) {
-  evt.preventDefault();
-  if (!evt.target.classList.contains("gallery__item")) {
-    return;
-  }
-
-  const lightbox = new SimpleLightbox(".gallery__item", {
-    captionsData: "alt",
-    captionDelay: 250,
-  });
-}
+const lightbox = new SimpleLightbox(".gallery__item", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
+lightbox.show();
